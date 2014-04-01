@@ -74,10 +74,11 @@
 }
 
 - (void)dealloc {
-    self.selectedDate = nil;
-    Block_release(_onActionSheetDone);
-    Block_release(_onActionSheetCancel);
-    [super dealloc];
+  [((UIDatePicker*)self.pickerView) removeTarget:self action:@selector(eventForDatePicker:) forControlEvents:UIControlEventValueChanged];
+  self.selectedDate = nil;
+  Block_release(_onActionSheetDone);
+  Block_release(_onActionSheetCancel);
+  [super dealloc];
 }
 
 - (UIView *)configuredPickerView {
